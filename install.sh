@@ -1,16 +1,16 @@
 #!/bin/bash
-# Install WordPress 中文版 on Repl.it
-# Copyright © by 舒夏 All Rights Reserved.
+# Install WordPress Chinese version on Repl.it
+# Copyright © by Shuxia All Rights Reserved.
 # 2022/12/6 12:27
 # 1. Create a new Repl.it as a PHP Web Server 
 # 2. Update the replit.nix file to include the code in this repo
 # 3. Restart the Repl
 # 4. Run this command from the Replit shell:
-#    bash <(curl -s https://raw.githubusercontent.com/sxbai/wordpress-zh_CN-on-replit/main/build.sh)
+#    bash <(curl -s https://raw.githubusercontent.com/siwovof/wordpress-zh_CN-on-replit/main/build.sh)
 
-echo "准备在您的 Replit 中安装 Wordpress"
+echo "Ready to install Wordpress in your Replit"
 
-read -p "继续?输入Y安装输入N退出 <Y/n> " prompt
+read -p "Continue? Enter Y to install and enter N to exit <Y/n>" prompt
 if [[ $prompt == "N" || $prompt == "n" || $prompt == "No" || $prompt == "no" ]]; then
   exit 0
 fi
@@ -48,29 +48,29 @@ define('FORCE_SSL_ADMIN', true);
 PHP
 
 # Get info for WP install
-read -p "输入 Wordpress 用户名: " username
+read -p "Enter your WordPress username: " username
 while true; do
-  read -s -p "输入 Wordpress 密码: " password
-  echo
-  read -s -p "再次输入Wordpress 密码: " password2
-  echo
-  [ "$password" = "$password2" ] && break
-  echo "请重新尝试！"
+   read -s -p "Enter Wordpress password: " password
+   echo
+   read -s -p "Enter Wordpress password again: " password2
+   echo
+   [ "$password" = "$password2" ] && break
+   echo "Please try again!"
 done
 
-read -p "请输入 Wordpress Email: " email
-read -p "请输入 Wordpress 站点标题: " title
+read -p "Please enter Wordpress Email: " email
+read -p "Please enter the title of the Wordpress site: " title
 
 REPL_URL=$REPL_SLUG.$REPL_OWNER.repl.co
 
 # Install Wordpress
 wp core install --url=$REPL_URL --title=$title --admin_user=$username --admin_password=$password --admin_email=$email
 
-echo "恭喜!!!"
-echo "您的新WordPress网站现已设置完成! "
-echo "网页地址: https://$REPL_URL"
-echo "管理员地址: https://$REPL_URL/wp-admin"
-echo "管理员账号: $username"
-echo "管理员密码: $password"
-echo "点击Run按钮运行WordPress博客项目"
+echo "Congratulations!!!"
+echo "Your new WordPress site is now setup!"
+echo "Web address: https://$REPL_URL"
+echo "Admin address: https://$REPL_URL/wp-admin"
+echo "Administrator account: $username"
+echo "admin password: $password"
+echo "Click the Run button to run the WordPress blog project"
 rm -rf install.sh
